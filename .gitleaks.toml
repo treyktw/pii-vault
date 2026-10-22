@@ -1,0 +1,10 @@
+# testdata/vectors.json holds deterministic AES-GCM outputs, derived record
+# keys and auth tags computed from PUBLIC test keys (0x07 * 32 and 0x09 * 32,
+# also in the file). They are high-entropy by construction and protect
+# nothing, so the file is allowlisted. Nothing else is.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Cross-language crypto test vectors sealed under public test keys"
+paths = ['''^testdata/vectors\.json$''']

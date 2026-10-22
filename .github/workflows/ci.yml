@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: ts/package-lock.json
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+          cache-dependency-path: go/go.sum
+      - run: make install
+      - run: make build
+      - name: Unit and interop tests
+        run: make test-unit
+      - name: Postgres integration tests (docker compose, postgres:16)
+        run: make test-integration
+      - name: Demo
+        run: make demo
+      - name: Vectors are reproducible
+        run: |
+          make vectors
+          git diff --exit-code testdata/vectors.json

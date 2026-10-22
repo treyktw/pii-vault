@@ -1,0 +1,32 @@
+{
+  "name": "pii-vault",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AES-256-GCM field vault for Postgres with per-record HKDF keys, AAD binding, key rotation and atomic access logging.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --exclude 'test/**/*.integration.test.ts'",
+    "test:integration": "vitest run test/vault.integration.test.ts",
+    "vectors": "tsx scripts/generate-vectors.ts",
+    "keyring": "tsx scripts/generate-keyring.ts",
+    "demo": "tsx examples/demo.ts"
+  },
+  "dependencies": {
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/pg": "^8.11.10",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

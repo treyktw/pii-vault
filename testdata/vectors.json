@@ -1,0 +1,223 @@
+{
+  "description": "Shared Node/Go test vectors for pii-vault. Keys are public test data. Regenerate with scripts/generate-vectors.sh.",
+  "service": "pii-vault",
+  "hkdfLabel": "pii-vault",
+  "keyring": {
+    "1": "BwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwc=",
+    "2": "CQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQk="
+  },
+  "nodeSealed": [
+    {
+      "name": "ssn-v2",
+      "context": {
+        "tenantId": "tenant_acme_0001",
+        "vaultId": "0b5c8a52-1f7e-4c1e-9a52-3f5d2a7c9e10",
+        "ownerType": "client",
+        "ownerId": "client_0001",
+        "type": "ssn",
+        "keyVersion": 2
+      },
+      "plaintext": "123-45-6789",
+      "aad": "{\"service\":\"pii-vault\",\"purpose\":\"pii-vault\",\"tenantId\":\"tenant_acme_0001\",\"vaultId\":\"0b5c8a52-1f7e-4c1e-9a52-3f5d2a7c9e10\",\"ownerType\":\"client\",\"ownerId\":\"client_0001\",\"type\":\"ssn\",\"keyVersion\":2}",
+      "recordKeyHex": "40cca9d7da788f94113a15d64ab4ffc2352bbacf9d8a30cfa8ca84b875896f5d",
+      "iv": "G3g3T5eGRUyvAbpU",
+      "ciphertext": "KZAgoSt9wOH/7cY=",
+      "authTag": "tn201yVd5B8SS0YvoYqRww==",
+      "algorithm": "aes-256-gcm",
+      "displayHint": "***-**-6789"
+    },
+    {
+      "name": "ssn-v1-rotated-key",
+      "context": {
+        "tenantId": "tenant_acme_0001",
+        "vaultId": "6f1c2e44-9b0a-4f3d-8e21-5a7b9c0d1e2f",
+        "ownerType": "client",
+        "ownerId": "client_0002",
+        "type": "ssn",
+        "keyVersion": 1
+      },
+      "plaintext": "987-65-4320",
+      "aad": "{\"service\":\"pii-vault\",\"purpose\":\"pii-vault\",\"tenantId\":\"tenant_acme_0001\",\"vaultId\":\"6f1c2e44-9b0a-4f3d-8e21-5a7b9c0d1e2f\",\"ownerType\":\"client\",\"ownerId\":\"client_0002\",\"type\":\"ssn\",\"keyVersion\":1}",
+      "recordKeyHex": "7933021624a4b31e432d8608b4d412f8ff9eb16f531becfd014de81666b9d4de",
+      "iv": "kta9r25QRzqZ78q/",
+      "ciphertext": "F1j84k8r0ce+af0=",
+      "authTag": "TxCv2LGhXIHBXN5W8/ZYVA==",
+      "algorithm": "aes-256-gcm",
+      "displayHint": "***-**-4320"
+    },
+    {
+      "name": "date-of-birth",
+      "context": {
+        "tenantId": "tenant_globex_0002",
+        "vaultId": "a3d4e5f6-0718-4293-a4b5-c6d7e8f90a1b",
+        "ownerType": "user",
+        "ownerId": "user_42",
+        "type": "date_of_birth",
+        "keyVersion": 2
+      },
+      "plaintext": "1990-01-31",
+      "aad": "{\"service\":\"pii-vault\",\"purpose\":\"pii-vault\",\"tenantId\":\"tenant_globex_0002\",\"vaultId\":\"a3d4e5f6-0718-4293-a4b5-c6d7e8f90a1b\",\"ownerType\":\"user\",\"ownerId\":\"user_42\",\"type\":\"date_of_birth\",\"keyVersion\":2}",
+      "recordKeyHex": "c9eabd1e506d88df908cabe5aaff435e0762294ade0f7ec0449271ab8e95d900",
+      "iv": "BTD+iG0GVlir4iHp",
+      "ciphertext": "lmdQsUuWfGD2KQ==",
+      "authTag": "aga9gMbxm9Rwx0WcAiHKkw==",
+      "algorithm": "aes-256-gcm",
+      "displayHint": "****-**-31"
+    },
+    {
+      "name": "unicode-co-buyer-name",
+      "context": {
+        "tenantId": "tenant_globex_0002",
+        "vaultId": "b4e5f607-1829-43a4-b5c6-d7e8f90a1b2c",
+        "ownerType": "deal",
+        "ownerId": "deal_ünïcødé_😀",
+        "type": "co_buyer_name",
+        "keyVersion": 2
+      },
+      "plaintext": "Zoë Example-Testperson 😀",
+      "aad": "{\"service\":\"pii-vault\",\"purpose\":\"pii-vault\",\"tenantId\":\"tenant_globex_0002\",\"vaultId\":\"b4e5f607-1829-43a4-b5c6-d7e8f90a1b2c\",\"ownerType\":\"deal\",\"ownerId\":\"deal_ünïcødé_😀\",\"type\":\"co_buyer_name\",\"keyVersion\":2}",
+      "recordKeyHex": "e329288f5f4b717e6bc85bbc040ff6e4e8b07386dc7d7bff53a19488bfd8c121",
+      "iv": "UcxH1s40jhxDT2aT",
+      "ciphertext": "Ba5QgBUJ4R1JXZ64Ah9jPe+barA/QJGmHuY5JQ==",
+      "authTag": "PcEVNgOUc7QbMsTcBdgRWA==",
+      "algorithm": "aes-256-gcm",
+      "displayHint": "••••"
+    },
+    {
+      "name": "line-separator-in-owner-id",
+      "context": {
+        "tenantId": "tenant_acme_0001",
+        "vaultId": "c5f60718-293a-44b5-c6d7-e8f90a1b2c3d",
+        "ownerType": "organization",
+        "ownerId": "org\u2028with\u2029separators<&>\"quoted\"",
+        "type": "custom",
+        "keyVersion": 1
+      },
+      "plaintext": "free-form restricted note",
+      "aad": "{\"service\":\"pii-vault\",\"purpose\":\"pii-vault\",\"tenantId\":\"tenant_acme_0001\",\"vaultId\":\"c5f60718-293a-44b5-c6d7-e8f90a1b2c3d\",\"ownerType\":\"organization\",\"ownerId\":\"org\u2028with\u2029separators<&>\\\"quoted\\\"\",\"type\":\"custom\",\"keyVersion\":1}",
+      "recordKeyHex": "86b4e64fd4a45f2c3b00c3cb52a68375bce599b841c946a1a2708f4ebb34998d",
+      "iv": "8MzinE+zOiqHxbHC",
+      "ciphertext": "dvPV1WK8gNKM48ke9Lk5UAyUKME+RGfJCg==",
+      "authTag": "cdumjLrGCUIKbEoUOvFQYA==",
+      "algorithm": "aes-256-gcm",
+      "displayHint": "••••"
+    },
+    {
+      "name": "monthly-income",
+      "context": {
+        "tenantId": "tenant_acme_0001",
+        "vaultId": "d6071829-3a4b-45c6-d7e8-f90a1b2c3d4e",
+        "ownerType": "client",
+        "ownerId": "client_0001",
+        "type": "monthly_income",
+        "keyVersion": 2
+      },
+      "plaintext": "8250.00",
+      "aad": "{\"service\":\"pii-vault\",\"purpose\":\"pii-vault\",\"tenantId\":\"tenant_acme_0001\",\"vaultId\":\"d6071829-3a4b-45c6-d7e8-f90a1b2c3d4e\",\"ownerType\":\"client\",\"ownerId\":\"client_0001\",\"type\":\"monthly_income\",\"keyVersion\":2}",
+      "recordKeyHex": "85404e8ae5a6314be53c949412af103bf6003fb576af6873f9b8645c721a6ead",
+      "iv": "JaI28XY8eO0B/Jm7",
+      "ciphertext": "Sr4d82WGhA==",
+      "authTag": "v3hmygV5CGOTtTpNWqad+Q==",
+      "algorithm": "aes-256-gcm",
+      "displayHint": "••••"
+    }
+  ],
+  "goSealed": [
+    {
+      "name": "ssn-v2",
+      "context": {
+        "tenantId": "tenant_acme_0001",
+        "vaultId": "0b5c8a52-1f7e-4c1e-9a52-3f5d2a7c9e10",
+        "ownerType": "client",
+        "ownerId": "client_0001",
+        "type": "ssn",
+        "keyVersion": 2
+      },
+      "plaintext": "123-45-6789",
+      "iv": "FpzrOjQXjYx6Db0a",
+      "ciphertext": "AcKvVjGP0Cn4a+E=",
+      "authTag": "cGvFbjMNiqBdqk4G2Q9HRg==",
+      "algorithm": "aes-256-gcm"
+    },
+    {
+      "name": "ssn-v1-rotated-key",
+      "context": {
+        "tenantId": "tenant_acme_0001",
+        "vaultId": "6f1c2e44-9b0a-4f3d-8e21-5a7b9c0d1e2f",
+        "ownerType": "client",
+        "ownerId": "client_0002",
+        "type": "ssn",
+        "keyVersion": 1
+      },
+      "plaintext": "987-65-4320",
+      "iv": "7hHLYiaiubSUHbUE",
+      "ciphertext": "f5BuGr8NzZIRFNc=",
+      "authTag": "I/gdTbQLSAoR6Bgx2i5+Eg==",
+      "algorithm": "aes-256-gcm"
+    },
+    {
+      "name": "date-of-birth",
+      "context": {
+        "tenantId": "tenant_globex_0002",
+        "vaultId": "a3d4e5f6-0718-4293-a4b5-c6d7e8f90a1b",
+        "ownerType": "user",
+        "ownerId": "user_42",
+        "type": "date_of_birth",
+        "keyVersion": 2
+      },
+      "plaintext": "1990-01-31",
+      "iv": "JJa4ihimjHDsiAxO",
+      "ciphertext": "RkghUQy8K6piCw==",
+      "authTag": "ek/XZBCNz1Ze2J1c46lMAQ==",
+      "algorithm": "aes-256-gcm"
+    },
+    {
+      "name": "unicode-co-buyer-name",
+      "context": {
+        "tenantId": "tenant_globex_0002",
+        "vaultId": "b4e5f607-1829-43a4-b5c6-d7e8f90a1b2c",
+        "ownerType": "deal",
+        "ownerId": "deal_ünïcødé_😀",
+        "type": "co_buyer_name",
+        "keyVersion": 2
+      },
+      "plaintext": "Zoë Example-Testperson 😀",
+      "iv": "tFQp33PxcT7YU5IN",
+      "ciphertext": "jFCduAFa7jfiXx0Wogn6IqjHGHcrPgt0o6kpWg==",
+      "authTag": "hYy0G8la027cKPVyZw5thw==",
+      "algorithm": "aes-256-gcm"
+    },
+    {
+      "name": "line-separator-in-owner-id",
+      "context": {
+        "tenantId": "tenant_acme_0001",
+        "vaultId": "c5f60718-293a-44b5-c6d7-e8f90a1b2c3d",
+        "ownerType": "organization",
+        "ownerId": "org\u2028with\u2029separators<&>\"quoted\"",
+        "type": "custom",
+        "keyVersion": 1
+      },
+      "plaintext": "free-form restricted note",
+      "iv": "ZThvZQ7rRflW03kb",
+      "ciphertext": "HfSQKI9+6psCwNFt05OnHqAYXzxeDof37g==",
+      "authTag": "ntKwv0IogfyLIUiHyGjlpw==",
+      "algorithm": "aes-256-gcm"
+    },
+    {
+      "name": "monthly-income",
+      "context": {
+        "tenantId": "tenant_acme_0001",
+        "vaultId": "d6071829-3a4b-45c6-d7e8-f90a1b2c3d4e",
+        "ownerType": "client",
+        "ownerId": "client_0001",
+        "type": "monthly_income",
+        "keyVersion": 2
+      },
+      "plaintext": "8250.00",
+      "iv": "lZS3PXibU9CH2lBf",
+      "ciphertext": "70+tG6aedg==",
+      "authTag": "iGsSB4Qr+bs4N5QRb+dy0g==",
+      "algorithm": "aes-256-gcm"
+    }
+  ]
+}
